@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nhật Nguyễn — Multimedia Designer & Creative Team Leader</title>
+  <meta name="description" content="Portfolio tương tác của Nguyễn Ngô Hoàng Nhật - Multimedia Designer & Creative Team Leader." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=8" />
+</head>
+<body>
+  <!-- Đốm sáng con trỏ chuột màu xanh sage -->
+  <div id="cursorGlow" class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- Toàn bộ Landing Page gọn sạch trong 1 màn hình full-page -->
+  <main id="hero" class="hero-fullscreen">
+    <!-- Canvas nhân vật phủ full màn hình -->
+    <canvas id="characterCanvas" class="character-canvas" aria-label="Nhân vật 3D tương tác theo con trỏ chuột"></canvas>
+
+    <!-- Lớp phủ nhẹ ở góc dưới phải để làm sạch hoàn toàn dấu mờ AI -->
+    <div class="corner-clean-mask" aria-hidden="true"></div>
+
+    <!-- Thanh báo tải ảnh lần đầu -->
+    <div id="loaderBadge" class="loader-badge">
+      <span class="loader-spinner"></span>
+      <span id="loaderText">Đang chuẩn bị hoạt ảnh... 0%</span>
+    </div>
+
+    <!-- Khối tiêu đề góc trên bên trái -->
+    <div class="top-left-brand" id="brandBlock">
+      <div class="brand-first" id="brandFirst">Nhật</div>
+      <div class="brand-full" id="brandFull">Nguyễn Ngô Hoàng</div>
+      <div class="brand-role" id="brandRole">MULTIMEDIA DESIGNER &amp; CREATIVE TEAM LEADER</div>
+    </div>
+
+    <!-- Bong bóng thoại tương tác khi di chuột -->
+    <div id="bubbleLeft" class="speech-bubble bubble-left">
+      Cô này xinh quá ❤️
+    </div>
+
+    <div id="bubbleRight" class="speech-bubble bubble-right">
+      Cô này cũng xinh nữa 🤤
+    </div>
+
+    <div id="bubbleCenter" class="speech-bubble bubble-center">
+      Ui ! xin lỗi nhé nãy giờ mình tập trung làm quá 😂
+
+    </div>
+
+    <!-- Cụm nút CTA cố định phía dưới -->
+    <div class="bottom-controls">
+      <!-- Nút chạm phụ dành riêng cho thiết bị di động -->
+      <div class="touch-controls" aria-label="Thử tương tác trên điện thoại">
+        <button type="button" class="touch-btn" data-zone="left">← Nhìn trái</button>
+        <button type="button" class="touch-btn" data-zone="center">👋 Chào bạn</button>
+        <button type="button" class="touch-btn" data-zone="right">Nhìn phải →</button>
+      </div>
+
+      <div class="hero-actions">
+        <a href="https://nnhoangnhat.myportfolio.com" target="_blank" rel="noopener" class="btn-primary">
+          Khám phá Portfolio ↗
+        </a>
+        <a href="https://nnhoangnhat.github.io/CV/" target="_blank" rel="noopener" class="btn-secondary">
+          Mở trang CV ↗
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js?v=8"></script>
+</body>
+</html>

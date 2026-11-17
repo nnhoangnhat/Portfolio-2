@@ -1,0 +1,362 @@
+/* Bảng màu đồng bộ hoàn toàn với CV: Kem ấm & Xanh Sage (#6A8B74 / #4D6D57) */
+:root {
+  --cream-bg: #F4EFE3;
+  --cream-card: #FAF8F5;
+  --sage: #6A8B74;
+  --sage-dark: #4D6D57;
+  --sage-light: #E3ECE6;
+  --sage-ink: #1E2B24;
+  --sage-muted: #5A6B61;
+  --sage-border: #D5DDD7;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--cream-bg);
+  color: var(--sage-ink);
+  font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--sage);
+  color: #ffffff;
+}
+
+/* ==================== ĐỐM SÁNG CON TRỎ CHUỘT ==================== */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #8FB39A 0%, var(--sage) 55%, var(--sage-dark) 100%);
+  box-shadow:
+    0 0 12px 3px rgba(106, 139, 116, 0.55),
+    0 0 28px 8px rgba(106, 139, 116, 0.25);
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+  transition: opacity 0.2s ease, width 0.2s ease, height 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform;
+}
+
+.cursor-glow.is-active {
+  opacity: 1;
+}
+
+.cursor-glow.is-hover-cta {
+  width: 24px;
+  height: 24px;
+  background: rgba(106, 139, 116, 0.28);
+  border: 1.5px solid var(--sage-dark);
+  box-shadow: 0 0 18px 4px rgba(77, 109, 87, 0.35);
+}
+
+/* Ẩn con trỏ mặc định trên màn hình có chuột */
+@media (pointer: fine) {
+  .hero-fullscreen,
+  .hero-fullscreen a,
+  .hero-fullscreen button {
+    cursor: none !important;
+  }
+}
+
+/* Ẩn đốm sáng trên thiết bị cảm ứng */
+@media (pointer: coarse) {
+  .cursor-glow {
+    display: none;
+  }
+}
+
+/* ==================== HERO FULL TRANG ==================== */
+.hero-fullscreen {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  user-select: none;
+}
+
+.character-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Làm sạch góc phải dưới của video (che hoàn toàn dấu mờ AI nhấp nháy) */
+.corner-clean-mask {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: clamp(220px, 22vw, 380px);
+  height: clamp(260px, 46vh, 520px);
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(
+    ellipse 92% 95% at 88% 72%,
+    #EFEAD8 0%,
+    rgba(239, 234, 216, 0.99) 62%,
+    transparent 92%
+  );
+}
+
+/* ==================== KHỐI TEXT GÓC TRÊN BÊN TRÁI ==================== */
+.top-left-brand {
+  position: absolute;
+  top: clamp(24px, 4.2vh, 44px);
+  left: clamp(24px, 4.2vw, 56px);
+  z-index: 20;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  pointer-events: none;
+}
+
+.brand-first {
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--sage-dark);
+  white-space: nowrap;
+  margin-bottom: 14px;
+}
+
+.brand-full {
+  font-size: clamp(1.35rem, 2.3vw, 2.15rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--sage-ink);
+  white-space: nowrap;
+  margin-bottom: 5px;
+}
+
+.brand-role {
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: var(--sage-muted);
+  white-space: nowrap;
+}
+
+/* ==================== HUY HIỆU ĐANG TẢI ==================== */
+.loader-badge {
+  position: absolute;
+  top: clamp(20px, 3.5vh, 36px);
+  right: clamp(20px, 3.5vw, 44px);
+  z-index: 25;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background-color: rgba(250, 248, 245, 0.92);
+  border: 1px solid var(--sage-border);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--sage-dark);
+  box-shadow: 0 6px 20px rgba(30, 43, 36, 0.08);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.loader-badge.is-done {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+}
+
+.loader-spinner {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--sage-light);
+  border-top-color: var(--sage-dark);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==================== BONG BÓNG THOẠI ==================== */
+.speech-bubble {
+  position: absolute;
+  z-index: 15;
+  max-width: 260px;
+  padding: 12px 18px;
+  border-radius: 18px;
+  background-color: rgba(250, 248, 245, 0.96);
+  border: 1px solid var(--sage-border);
+  color: var(--sage-ink);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.45;
+  box-shadow: 0 14px 32px -8px rgba(77, 109, 87, 0.18);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(10px) scale(0.94);
+  transition:
+    opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.speech-bubble.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.bubble-left {
+  left: clamp(24px, 12vw, 190px);
+  top: 42%;
+}
+
+.bubble-right {
+  right: clamp(24px, 12vw, 190px);
+  top: 38%;
+}
+
+.bubble-center {
+  left: calc(50% + min(12vw, 185px));
+  right: auto;
+  top: 19%;
+  background-color: var(--sage-dark);
+  border-color: var(--sage-dark);
+  color: #ffffff;
+  transform: translateY(10px) scale(0.94) rotate(5deg);
+}
+
+.bubble-center.is-visible {
+  transform: translateY(0) scale(1) rotate(5deg);
+}
+
+/* ==================== CỤM NÚT PHÍA DƯỚI ==================== */
+.bottom-controls {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(20px, 4vh, 40px);
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+}
+
+.touch-controls {
+  display: none;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.touch-btn {
+  border: 1px solid var(--sage-border);
+  background-color: rgba(250, 248, 245, 0.94);
+  color: var(--sage-dark);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+
+.touch-btn.is-active,
+.touch-btn:hover {
+  background-color: var(--sage-dark);
+  border-color: var(--sage-dark);
+  color: #ffffff;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 26px;
+  border-radius: 999px;
+  font-size: 0.94rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--sage-dark);
+  color: #ffffff;
+  box-shadow: 0 10px 24px -8px rgba(77, 109, 87, 0.45);
+}
+
+.btn-primary:hover {
+  background-color: var(--sage);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: rgba(250, 248, 245, 0.94);
+  color: var(--sage-dark);
+  border: 1px solid var(--sage-border);
+  box-shadow: 0 8px 20px -10px rgba(30, 43, 36, 0.16);
+}
+
+.btn-secondary:hover {
+  border-color: var(--sage);
+  background-color: var(--sage-light);
+  transform: translateY(-2px);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 640px) {
+  .speech-bubble {
+    font-size: 0.78rem;
+    padding: 8px 12px;
+    max-width: 170px;
+  }
+
+  .bubble-left {
+    left: 14px;
+    top: 30%;
+  }
+
+  .bubble-right {
+    right: 14px;
+    top: 30%;
+  }
+
+  .bubble-center {
+    left: auto;
+    right: 14px;
+    top: 22%;
+    max-width: 185px;
+  }
+
+  .touch-controls {
+    display: flex;
+  }
+}

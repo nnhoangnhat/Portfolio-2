@@ -1,0 +1,4 @@
+# Bỏ qua các file video gốc để repo nhẹ và tải trang nhanh trên GitHub Pages
+*.mp4
+.DS_Store
+Thumbs.db
